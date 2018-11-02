@@ -5,7 +5,8 @@ from lxml import etree
 
 def main_fun(crawl_url):
     req_header = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit'
+                      '/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
     }
     host_url = 'http://www.jinyongwang.com'
     #################################### 以下为按书名导出 ###############################
