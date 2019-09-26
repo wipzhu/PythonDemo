@@ -1,0 +1,12 @@
+.idea
+.env
+composer.lock
+*.DS_Store
+/config/database.php
+/config/queue.php
+/config/logging.php
+Homestead.json
+Homestead.yaml
+/doc/html
+_ide_helper.php
+.phan
