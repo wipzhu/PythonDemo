@@ -19,7 +19,7 @@ while True:
         else:
             tools.search_card()
     elif input_str == "0":
-        print("欢迎再次使用【名片管理系统】")
+        print("欢迎再次使用【名片管理系统】 V1.0")
         break
     else:
         print("您输入的操作不正确，请重新输入！")
