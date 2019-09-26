@@ -23,4 +23,3 @@ while True:
         break
     else:
         print("您输入的操作不正确，请重新输入！")
-1
