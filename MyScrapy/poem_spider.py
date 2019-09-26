@@ -65,10 +65,10 @@ def crawl_by_per_page(crawl_url, uuid, page):
             print('\t\t《' + title[0] + '》写入完毕！')
 
 
+# 诗词首页 https://so.gushiwen.org/authors/authorvsw.aspx?page=1&id=3b99a16ff2dd
 host_url = 'https://so.gushiwen.org/authors/authorvsw.aspx'
 # 苏轼
-# 诗词首页 https://so.gushiwen.org/authors/authorvsw.aspx?page=1&id=3b99a16ff2dd
-# spider_main(host_url, '3b99a16ff2dd', page='all')
+spider_main(host_url, '3b99a16ff2dd', page='all')
 # 李白
 # https://so.gushiwen.org/authors/authorvsw.aspx?page=6&id=b90660e3e492
 # spider_main(host_url, 'b90660e3e492', page='all')
@@ -80,5 +80,5 @@ host_url = 'https://so.gushiwen.org/authors/authorvsw.aspx'
 # 陈寿
 # spider_main(host_url, 'bc168825cd92', page='all')
 # 王勃
-spider_main(host_url, 'e6b970da08cd', page='all')
+# spider_main(host_url, 'e6b970da08cd', page='all')
 

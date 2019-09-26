@@ -1,4 +1,3 @@
-#! C:\Users\wipzh\AppData\Local\Programs\Python\Python37-32
 
 import pygame
 from pygame.sprite import Group
