@@ -58,20 +58,6 @@ def crawl_main(s_index):
             # print(quote + '\n')
 
             # -------------------- 写入数据库 --------------------
-            # CREATE TABLE `douban_movie_top250` (
-            # 	`id` INT ( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT,
-            # 	`rank` VARCHAR ( 10 ) NOT NULL COMMENT '排名',
-            # 	`movie_name` VARCHAR ( 150 ) NOT NULL DEFAULT '' COMMENT '电影名称',
-            # 	`staff` VARCHAR ( 180 ) NOT NULL DEFAULT '' COMMENT '演职人员',
-            # 	`age_type` VARCHAR ( 120 ) NOT NULL DEFAULT '' COMMENT '年代/类型',
-            # 	`score` VARCHAR ( 20 ) NOT NULL DEFAULT '' COMMENT '豆瓣评分',
-            # 	`people_num` VARCHAR ( 50 ) NOT NULL DEFAULT '' COMMENT '评分人数',
-            # 	`quote` VARCHAR ( 255 ) NOT NULL DEFAULT '' COMMENT '描述',
-            # 	`cover_pic_url` VARCHAR ( 255 ) NOT NULL DEFAULT '' COMMENT '封面图片地址',
-            # 	`summary_url` VARCHAR ( 255 ) NOT NULL DEFAULT '' COMMENT '简介地址',
-            # PRIMARY KEY ( `id` )
-            # ) ENGINE = MyISAM AUTO_INCREMENT = 100001 DEFAULT CHARSET = utf8;
-
             ins_data = {'rank': 'No.' + str(rank), 'movie_name': movie_name,
                         'staff': staff, 'age_type': age_type,
                         'score': score, 'people_num': people_num, 'quote': quote,
@@ -100,3 +86,18 @@ for i in range(10):
     print('-' * 50 + '开始爬取第' + str(i + 1) + '页...' + '-' * 50)
     crawl_main(25 * i)
     # break
+
+# ------------------ 建表语句 ------------------
+# CREATE TABLE `douban_movie_top250` (
+# 	`id` INT ( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT,
+# 	`rank` VARCHAR ( 10 ) NOT NULL COMMENT '排名',
+# 	`movie_name` VARCHAR ( 150 ) NOT NULL DEFAULT '' COMMENT '电影名称',
+# 	`staff` VARCHAR ( 180 ) NOT NULL DEFAULT '' COMMENT '演职人员',
+# 	`age_type` VARCHAR ( 120 ) NOT NULL DEFAULT '' COMMENT '年代/类型',
+# 	`score` VARCHAR ( 20 ) NOT NULL DEFAULT '' COMMENT '豆瓣评分',
+# 	`people_num` VARCHAR ( 50 ) NOT NULL DEFAULT '' COMMENT '评分人数',
+# 	`quote` VARCHAR ( 255 ) NOT NULL DEFAULT '' COMMENT '描述',
+# 	`cover_pic_url` VARCHAR ( 255 ) NOT NULL DEFAULT '' COMMENT '封面图片地址',
+# 	`summary_url` VARCHAR ( 255 ) NOT NULL DEFAULT '' COMMENT '简介地址',
+# PRIMARY KEY ( `id` )
+# ) ENGINE = InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
