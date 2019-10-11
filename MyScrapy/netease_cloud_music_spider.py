@@ -157,7 +157,7 @@ class NeteaseCloudMusicSpider():
                     comment_id = str(comment['commentId'])
                     content = str(comment['content'])
                     time = str(comment['time'])
-                    liked_count = str(comment['likedCount'])
+                    liked_count = int(comment['likedCount'])
                     is_hot = 0
 
                     # 数据入库
@@ -256,24 +256,30 @@ class NeteaseCloudMusicSpider():
 
 
 def main():
+    print('取消注释以执行对应代码~~')
+    pass
     spider = NeteaseCloudMusicSpider()
 
-    # # 爬取歌曲详细信息
+    # # 爬取某首歌曲的详细信息
     # song_info = spider.get_song_info('30431366')
     # print(song_info)
 
-    # 爬取某个歌单中的歌曲列表
-    song_list = spider.get_songs_in_list('2331414535')
-    song_list = song_list[3:]
-    # print(song_list)
-    # return
+    # # 爬取某个歌单中的歌曲列表
+    # song_list = spider.get_songs_in_list('2331414535')
+    # # song_list = song_list[3:]
+    # # print(song_list)
+    # # return
+    #
+    # # 爬取某个歌单中的每首歌曲的评论列表
+    # for song in song_list:
+    #     spider.get_comment_list(song['song_id'])
 
-    # 爬取某个歌曲中的评论列表
-    for song in song_list:
-        spider.get_comment_list(song['song_id'])
+    # # 单独爬取某收歌曲的评论
+    # spider.get_comment_list('406000625')
 
 
-main()
+if __name__ == "__main__":
+    main()
 
 # ------------------------------建表语句---------------------------------
 # CREATE TABLE `netease_cloud_music_comment` (
@@ -287,7 +293,7 @@ main()
 #   `comment_id` varchar(255) NOT NULL DEFAULT '' COMMENT '评论ID',
 #   `content` text NOT NULL COMMENT '评论内容',
 #   `time` varchar(15) NOT NULL DEFAULT '' COMMENT '评论时间',
-#   `liked_count` varchar(10) NOT NULL DEFAULT '' COMMENT '评论点赞数',
+#   `liked_count` int(12) NOT NULL DEFAULT 0 COMMENT '评论点赞数',
 #   `is_hot` tinyint(3) NOT NULL DEFAULT 0 COMMENT '是否热评',
 #   PRIMARY KEY (`id`)
 # ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
