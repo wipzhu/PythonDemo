@@ -148,68 +148,14 @@ class NeteaseCloudMusicSpider():
                 #             print(' ' * 8 + '回复内容：' + str(reply['content']))
                 #     print('-' * 30, end='\n')
 
-            # 最新评论--- in 判断json中是否存在这个key
-            if 'comments' in loaded_json:
-                for comment in loaded_json['comments']:
-                    user_id = str(comment['user']['userId'])
-                    nickname = comment['user']['nickname']
-                    avatar_url = comment['user']['avatarUrl']
-                    comment_id = str(comment['commentId'])
-                    content = str(comment['content'])
-                    time = str(comment['time'])
-                    liked_count = int(comment['likedCount'])
-                    is_hot = 0
-
-                    # 数据入库
-                    ins_data = {'song_id': song_id, 'song_name': song_name, 'artist_name': artist_name,
-                                'user_id': user_id, 'nickname': nickname, 'avatar_url': avatar_url,
-                                'comment_id': comment_id, 'content': content, 'time': time,
-                                'liked_count': liked_count, 'is_hot': is_hot}
-                    # print(ins_data)
-                    op_mysql.add_data('netease_cloud_music_comment', ins_data)
-
-                    if comment['beReplied']:
-                        for reply in comment['beReplied']:
-                            re_user_id = str(reply['user']['userId'])
-                            re_nickname = reply['user']['nickname']
-                            re_avatar_url = reply['user']['avatarUrl']
-                            re_comment_id = str(reply['beRepliedCommentId'])
-                            re_content = str(reply['content'])
-
-                            # 数据入库
-                            ins_data = {'song_id': song_id, 'song_name': song_name, 'comment_id': comment_id,
-                                        're_user_id': re_user_id, 're_nickname': re_nickname,
-                                        're_avatar_url': re_avatar_url, 're_comment_id': re_comment_id,
-                                        're_content': re_content}
-                            op_mysql.add_data('netease_cloud_music_comment_reply', ins_data)
-
-                # print('+' * 20 + '以下为【最新评论】' + '+' * 20)
-                # for comment in loaded_json['comments']:
-                #     print('-' * 30)
-                #     print('用户 ID：' + str(comment['user']['userId']))
-                #     print('用户昵称：' + comment['user']['nickname'])
-                #     print('头像地址：' + comment['user']['avatarUrl'])
-                #     print('评论 ID：' + str(comment['commentId']))
-                #     print('评论内容：' + comment['content'].replace('\n', ' '))
-                #     print('评论时间：' + str(comment['time']))
-                #     print('点 赞 数：' + str(comment['likedCount']))
-                #     if comment['beReplied']:
-                #         # print('评论回复：')
-                #         for reply in comment['beReplied']:
-                #             print(' ' * 8 + '用户 ID：' + str(reply['user']['userId']))
-                #             print(' ' * 8 + '用户昵称：' + reply['user']['nickname'])
-                #             print(' ' * 8 + '头像地址' + reply['user']['avatarUrl'])
-                #             print(' ' * 8 + '回复 ID：' + str(reply['beRepliedCommentId']))
-                #             print(' ' * 8 + '回复内容：' + str(reply['content']))
-                #     print('-' * 30, end='\n')
-
             print('---第【' + str(page) + '】页评论爬取完毕。')
 
             # 页码 +1
             page += 1
 
-            if len(loaded_json['comments']) < self.pagesize:
+            if len(loaded_json['hotComments']) < self.pagesize:
                 print('---评论爬取完成：' + '【' + song_name + '】 | ' + song_id)
+                print('\n' + '-' * 60 + '\n')
                 break
 
     def get_song_info(self, song_id):
@@ -257,7 +203,7 @@ class NeteaseCloudMusicSpider():
 
 def main():
     print('取消注释以执行对应代码~~')
-    pass
+    return
     spider = NeteaseCloudMusicSpider()
 
     # # 爬取某首歌曲的详细信息
