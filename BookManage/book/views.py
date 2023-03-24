@@ -40,3 +40,32 @@ def index(request):
 #     price=12.8, read_count=10, comment_count=111, is_delete=0
 # )
 # book=BookInfo.objects.filter(id=7).delete()
+
+#################查找数据#################
+# try:
+#     book = BookInfo.objects.get(id=7)
+# except BookInfo.DoesNotExist:
+#     print("查询结果不存在")
+# from book.models import PeopleInfo
+# all = PeopleInfo.objects.all()
+# count = all.count()
+# 过滤查询：模型类名.objects.filter(属性名__运算符=值),
+# 模型类名.objects.exclude(属性名__运算符=值)
+# 模型类名.objects.get(属性名__运算符=值)
+# BookInfo.objects.get(pk=1)
+# BookInfo.objects.filter(pk=1)
+# BookInfo.objects.filter(name__contains='湖')  # 书名中包含xx
+# BookInfo.objects.filter(name__endswith='部')  # 书名以xx结尾
+# BookInfo.objects.filter(name__isnull=True)  # 书名为Null
+# BookInfo.objects.filter(id__in=[1, 2, 3])  # id在列表内
+# BookInfo.objects.filter(id__gte=3)  # id >=
+# BookInfo.objects.exclude(id=3)  # id != 3
+# BookInfo.objects.filter(pub_date__year=1980)  # 1980年 发表的图书
+# BookInfo.objects.filter(pub_date__gt='1990-01-01')  # 1990-01-01后发表的图书
+#
+# from django.db.models import F, Q
+#
+# BookInfo.objects.filter(read_count__gte=(F('comment_count') * 2))  # 阅读数 >= 2 * 评论数
+# BookInfo.objects.filter(read_count__gte=20, id__lt=4)  # 多条件
+# BookInfo.objects.filter(Q(read_count__gte=80) & Q(id__gt=2))  # 逻辑条件
+# BookInfo.objects.filter(~Q(id=3))  # id != 3
