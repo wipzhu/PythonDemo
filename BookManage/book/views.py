@@ -16,7 +16,8 @@ def index(request):
     return render(request, 'book/index.html', context)
     # return HttpResponse('Success')
 
-# from book.models import BookInfo
+
+from book.models import BookInfo
 #
 #################新增数据#################
 # book = BookInfo(
@@ -69,3 +70,17 @@ def index(request):
 # BookInfo.objects.filter(read_count__gte=20, id__lt=4)  # 多条件
 # BookInfo.objects.filter(Q(read_count__gte=80) & Q(id__gt=2))  # 逻辑条件
 # BookInfo.objects.filter(~Q(id=3))  # id != 3
+
+#################聚合函数#################
+from django.db.models import Sum, Avg, Max, Min, Count
+
+BookInfo.objects.aggregate(Count('id'))
+BookInfo.objects.aggregate(Avg('read_count'))
+
+#################排序#################
+BookInfo.objects.all().order_by('-read_count')  # 倒序，字段名字前加"-"
+
+#################关联查询#################
+book = BookInfo.objects.get(id=1)
+people = book.peopleinfo_set.all()
+
