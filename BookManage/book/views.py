@@ -18,6 +18,7 @@ def index(request):
 
 
 from book.models import BookInfo, PeopleInfo
+
 #
 #################新增数据#################
 # book = BookInfo(
@@ -100,6 +101,10 @@ BookInfo.objects.filter(peopleinfo__description__contains="八")
 PeopleInfo.objects.filter(book__name="天龙八部")
 # 查询图书阅读量>30的所有人物
 PeopleInfo.objects.filter(book__read_count__gt=30)
+PeopleInfo.objects.filter(book__read_count__gt=30)[2:5]  # 分页查询
 
+from django.core.paginator import Paginator
 
-
+peoples = PeopleInfo.objects.all().order_by('id')
+p = Paginator(peoples, 2)  # 每页条数
+page_people = p.page(1)  # 页码
