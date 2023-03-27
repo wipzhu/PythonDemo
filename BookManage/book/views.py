@@ -17,8 +17,7 @@ def index(request):
     # return HttpResponse('Success')
 
 
-from book.models import BookInfo, PeopleInfo
-
+# from book.models import BookInfo, PeopleInfo
 #
 #################新增数据#################
 # book = BookInfo(
@@ -71,40 +70,40 @@ from book.models import BookInfo, PeopleInfo
 # BookInfo.objects.filter(read_count__gte=20, id__lt=4)  # 多条件
 # BookInfo.objects.filter(Q(read_count__gte=80) & Q(id__gt=2))  # 逻辑条件
 # BookInfo.objects.filter(~Q(id=3))  # id != 3
-
-#################聚合函数#################
-from django.db.models import Sum, Avg, Max, Min, Count
-
-BookInfo.objects.aggregate(Count('id'))
-BookInfo.objects.aggregate(Avg('read_count'))
-
-#################排序#################
-BookInfo.objects.all().order_by('-read_count')  # 倒序，字段名字前加"-"
-
-#################关联查询#################
-book = BookInfo.objects.get(id=1)
-people = book.peopleinfo_set.all()
-people1 = PeopleInfo.objects.filter(book=1)
-
-# 查询任务为1的书籍信息
-person = PeopleInfo.objects.get(id=1)
-bookInfo = person.book
-bookName = bookInfo.name
-
-#################关联过滤查询#################
-# 查询图书，要求图书人物为”郭靖”
-BookInfo.objects.filter(peopleinfo__name="郭靖")
-# 查询图书，要求图书中人物描述包含”八“
-BookInfo.objects.filter(peopleinfo__description__contains="八")
-
-# 查询书名为“天龙八部”的所有人物
-PeopleInfo.objects.filter(book__name="天龙八部")
-# 查询图书阅读量>30的所有人物
-PeopleInfo.objects.filter(book__read_count__gt=30)
-PeopleInfo.objects.filter(book__read_count__gt=30)[2:5]  # 分页查询
-
-from django.core.paginator import Paginator
-
-peoples = PeopleInfo.objects.all().order_by('id')
-p = Paginator(peoples, 2)  # 每页条数
-page_people = p.page(1)  # 页码
+#
+# #################聚合函数#################
+# from django.db.models import Sum, Avg, Max, Min, Count
+#
+# BookInfo.objects.aggregate(Count('id'))
+# BookInfo.objects.aggregate(Avg('read_count'))
+#
+# #################排序#################
+# BookInfo.objects.all().order_by('-read_count')  # 倒序，字段名字前加"-"
+#
+# #################关联查询#################
+# book = BookInfo.objects.get(id=1)
+# people = book.peopleinfo_set.all()
+# people1 = PeopleInfo.objects.filter(book=1)
+#
+# # 查询任务为1的书籍信息
+# person = PeopleInfo.objects.get(id=1)
+# bookInfo = person.book
+# bookName = bookInfo.name
+#
+# #################关联过滤查询#################
+# # 查询图书，要求图书人物为”郭靖”
+# BookInfo.objects.filter(peopleinfo__name="郭靖")
+# # 查询图书，要求图书中人物描述包含”八“
+# BookInfo.objects.filter(peopleinfo__description__contains="八")
+#
+# # 查询书名为“天龙八部”的所有人物
+# PeopleInfo.objects.filter(book__name="天龙八部")
+# # 查询图书阅读量>30的所有人物
+# PeopleInfo.objects.filter(book__read_count__gt=30)
+# PeopleInfo.objects.filter(book__read_count__gt=30)[2:5]  # 分页查询
+#
+# from django.core.paginator import Paginator
+#
+# peoples = PeopleInfo.objects.all().order_by('id')
+# p = Paginator(peoples, 2)  # 每页条数
+# page_people = p.page(1)  # 页码
