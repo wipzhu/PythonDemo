@@ -17,6 +17,16 @@ def index(request):
     # return HttpResponse('Success')
 
 
+def good_list(request, cat_id, goods_id):
+    print(cat_id + goods_id)
+    params = request.GET
+    print(params)
+    order = params.get('order')
+    print(order)
+    order = params.getlist('order')
+    print(order)
+    return HttpResponse(cat_id + goods_id)
+
 # from book.models import BookInfo, PeopleInfo
 #
 #################新增数据#################
