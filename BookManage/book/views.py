@@ -59,6 +59,30 @@ def json(request):
     print(request.method)
     return HttpResponse('json')
 
+
+def response(request):
+    # response = HttpResponse('Success', status=200)
+    # response['name'] = 'wipzhu'
+    # return response
+    from django.http import JsonResponse
+    info = {
+        'name': 'wipzhu',
+        'age': 28
+    }
+    response = JsonResponse(data=info)
+    friends = [
+        {
+            'name': 'Jack',
+            'address': 'shanghai'
+        },
+        {
+            'name': 'Rose',
+            'address': 'beijing'
+        }
+    ]
+    response = JsonResponse(data=friends, safe=False)
+    return response
+
 # from book.models import BookInfo, PeopleInfo
 #
 #################新增数据#################

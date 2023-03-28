@@ -1,6 +1,6 @@
 from django.urls import path, converters
 from django.urls.converters import register_converter
-from book.views import good_list, register, json, shop
+from book.views import good_list, register, json, shop, response
 
 
 class MobileConverter:
@@ -23,4 +23,5 @@ urlpatterns = [
     path('goods/<int:cat_id>/<int:goods_id>/', good_list),
     path('register/', register),
     path('json/', json),
+    path('response/', response),
 ]
