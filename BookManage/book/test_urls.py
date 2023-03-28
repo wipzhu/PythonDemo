@@ -1,6 +1,6 @@
 from django.urls import path, converters
 from django.urls.converters import register_converter
-from book.views import good_list, register, json, shop, response, setCookie, getCookie
+from book.views import good_list, register, json, shop, response, setCookie, getCookie, setSession, getSession
 
 
 class MobileConverter:
@@ -26,4 +26,6 @@ urlpatterns = [
     path('response/', response),
     path('set-cookie/', setCookie),
     path('get-cookie/', getCookie),
+    path('set-sesion/', setSession),
+    path('get-sesion/', getSession),
 ]

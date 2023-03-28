@@ -103,6 +103,30 @@ def getCookie(request):
     print(name)
     return HttpResponse(name)
 
+
+def setSession(request):
+    username = request.GET.get('username')
+    user_id = 123456
+    request.session['username'] = username
+    request.session['userid'] = user_id
+
+    # 清除session
+    # request.session.delete()
+    # request.session.clear()  # 清除key，保留value
+    # request.session.flush()  # key和value全清除
+
+    request.session.set_expiry(250)
+
+    return HttpResponse("Success")
+
+
+def getSession(request):
+    userid = request.session.get('userid')
+    username = request.session.get('username')
+
+    content = '{},{}'.format(userid, username)
+    return HttpResponse(content)
+
 # from book.models import BookInfo, PeopleInfo
 #
 #################新增数据#################

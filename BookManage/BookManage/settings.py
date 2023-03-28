@@ -76,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BookManage.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -95,6 +94,21 @@ DATABASES = {
     }
 }
 
+########缓存配置项#########
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://192.168.56.56:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        },
+    }
+}
+# session保存设置
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# 混合存储，优先从缓存读取，没有则从数据库读取
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache_db'
+SESSION_CACHE_ALIAS = 'default'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -114,7 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -129,7 +142,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
