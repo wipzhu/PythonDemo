@@ -45,6 +45,11 @@ def json(request):
     body_dict = json.loads(data_str)
     print(body_dict)
     # return JsonResponse(data_str, safe=False)
+
+    headers = request.META
+    print(headers['SERVER_NAME'])
+    print(headers['SERVER_PORT'])
+    print(request.method)
     return HttpResponse('json')
 
 # from book.models import BookInfo, PeopleInfo
