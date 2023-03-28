@@ -86,6 +86,23 @@ def response(request):
     return redirect('https://www.baidu.com/')
 
 
+def setCookie(request):
+    username = request.GET.get('username')
+    password = request.GET.get('password')
+    res = HttpResponse('Success')
+    res.set_cookie('username', username, max_age=3600)
+    res.set_cookie('password', password)
+    # 删除cookie
+    # res.delete_cookie(username)
+    return res
+
+
+def getCookie(request):
+    cookie = request.COOKIES
+    name = cookie.get('username')
+    print(name)
+    return HttpResponse(name)
+
 # from book.models import BookInfo, PeopleInfo
 #
 #################新增数据#################
