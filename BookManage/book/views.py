@@ -19,6 +19,12 @@ def index(request):
 
 
 ########################test_urls###########################
+def shop(request, city_id, mobile):
+    print(city_id)
+    print(mobile)
+    return HttpResponse('Success')
+
+
 def good_list(request, cat_id, goods_id):
     print(cat_id + goods_id)
     params = request.GET
@@ -27,6 +33,7 @@ def good_list(request, cat_id, goods_id):
     print(order)
     order = params.getlist('order')
     print(order)
+
     return HttpResponse(cat_id + goods_id)
 
 
