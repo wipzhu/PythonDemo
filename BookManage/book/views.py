@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
 # Create your views here.
@@ -80,8 +80,11 @@ def response(request):
             'address': 'beijing'
         }
     ]
-    response = JsonResponse(data=friends, safe=False)
-    return response
+    # response = JsonResponse(data=friends, safe=False)
+    # return response
+
+    return redirect('https://www.baidu.com/')
+
 
 # from book.models import BookInfo, PeopleInfo
 #
