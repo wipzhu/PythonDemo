@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 
 # Create your views here.
 """视图函数有两个要求：
@@ -8,6 +8,7 @@ from django.http import HttpRequest, HttpResponse
 """
 
 
+########################urls###########################
 def index(request):
     context = {
         'title': '戳我去百度',
@@ -17,6 +18,7 @@ def index(request):
     # return HttpResponse('Success')
 
 
+########################test_urls###########################
 def good_list(request, cat_id, goods_id):
     print(cat_id + goods_id)
     params = request.GET
@@ -26,6 +28,24 @@ def good_list(request, cat_id, goods_id):
     order = params.getlist('order')
     print(order)
     return HttpResponse(cat_id + goods_id)
+
+
+def register(request):
+    params = request.POST
+    print(params)
+    return JsonResponse(params)
+
+
+def json(request):
+    data = request.body
+    data_str = data.decode()
+    print(data_str)
+    # json形式的字符串可以转换为字典
+    import json
+    body_dict = json.loads(data_str)
+    print(body_dict)
+    # return JsonResponse(data_str, safe=False)
+    return HttpResponse('json')
 
 # from book.models import BookInfo, PeopleInfo
 #
