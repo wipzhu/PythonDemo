@@ -127,6 +127,14 @@ def getSession(request):
     content = '{},{}'.format(userid, username)
     return HttpResponse(content)
 
+
+def testLogin(request):
+    print(request.method)
+    if request.method == 'GET':
+        return HttpResponse("GET")
+    elif request.method == 'POST':
+        return HttpResponse("POST")
+
 # from book.models import BookInfo, PeopleInfo
 #
 #################新增数据#################
