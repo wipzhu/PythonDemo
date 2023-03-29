@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views import View
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
 # Create your views here.
@@ -134,6 +135,49 @@ def testLogin(request):
         return HttpResponse("GET")
     elif request.method == 'POST':
         return HttpResponse("POST")
+
+
+class UserView(View):
+
+    def get(self, request):
+        return HttpResponse('Get')
+
+    def post(self, request):
+        return HttpResponse('Post')
+
+    def put(self, request):
+        return HttpResponse('Put')
+
+    def profile(self, request):
+        return HttpResponse("Success")
+
+    def play(self):
+        pass
+
+    @classmethod
+    def say(cls):
+        pass
+
+    @staticmethod
+    def eat():
+        pass
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+# 多继承，注意继承的先后顺序
+class OrderView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        # isLogin = False
+        # if not isLogin:
+        #     return HttpResponse("这个页面需要登录才能访问，请先登录")
+
+        return HttpResponse('Order Get，页面必须登录')
+
+    def post(self, request):
+        return HttpResponse('Order Post，页面必须登录')
 
 # from book.models import BookInfo, PeopleInfo
 #

@@ -1,9 +1,9 @@
 from django.urls import path, converters
 from django.urls.converters import register_converter
 
-from book.UserView import UserView
 from book.views import good_list, register, json, shop, response, setCookie, getCookie, setSession, getSession, \
     testLogin
+from book.views import UserView, OrderView
 
 
 class MobileConverter:
@@ -33,5 +33,6 @@ urlpatterns = [
     path('get-sesion/', getSession),
     path('test-login/', testLogin),
     ##############类视图################
-    path('user/index', UserView.as_view())
+    path('user', UserView.as_view()),
+    path('order', OrderView.as_view())
 ]
